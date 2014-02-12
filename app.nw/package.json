@@ -18,7 +18,8 @@
     "url": "https://raw.github.com/svg/svgo-gui/master/LICENSE"
   }],
   "dependencies": {
-    "svgo": ""
+    "svgo": "",
+    "cheerio": "*"
   },
   "main": "index.html",
   "window": {

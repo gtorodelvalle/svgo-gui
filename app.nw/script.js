@@ -3,6 +3,7 @@
     var FS = require('fs'),
         GUI = require('nw.gui'),
         SVGO = require('svgo'),
+        CHEERIO = require('cheerio'),
         svgo = new SVGO(),
         body = doc.body,
         holder = doc.querySelector('.holder'),
@@ -95,6 +96,12 @@
                             outBytes;
 
                         try {
+                            var cheerio = CHEERIO.load(data);
+                            cheerio('svg').prepend(
+                                '<defs><style>svg>* { display: none; } ' +
+                                'svg>*:target { display: inline; }' +
+                                '</style></defs>');
+                            data = cheerio.html();
 
                             svgo.optimize(data, function(result) {
 
